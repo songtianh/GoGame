@@ -104,9 +104,8 @@ func (r Hero) Attak(target *Monster) (finish bool){
 		target.IsAlive = false
 	}
 
-	if target.IsAlive{
-		fmt.Printf("%s攻击了%s造成了%g点伤害，%s剩余%g血\n",r.Name,target.Name,damage,target.Name,target.Chp)
-	}else{
+	fmt.Printf("%s攻击了%s造成了%g点伤害，%s剩余%g血\n",r.Name,target.Name,damage,target.Name,target.Chp)
+	if !target.IsAlive{
 		fmt.Println("战斗结束，恭喜你获得了胜利")
 		fmt.Printf("得到了%d经验，%d金币\n",target.Level,target.Level)
 		MyHero.exp++;

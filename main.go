@@ -7,6 +7,7 @@ import (
 	"hong.com/role"
 )
 
+var ch chan int
 var equip [6]int;
 var arr = [10]int{1,2,3,4,5}
 var randInt int;
@@ -17,7 +18,7 @@ var isAutoFight bool;
 var isAutoWalk bool;
 
 //攻击速度
-var attakeSpeed = time.Millisecond*400
+var attakeSpeed = time.Millisecond*800
 
 //寻怪速度
 var fightSpeed = time.Second*2
@@ -31,12 +32,10 @@ func main() {
 	fmt.Println("请输入姓名：")
 	fmt.Scanf("%s",&input)
 	role.NewHero(input)
-
-	for true{
-		if GameOver() {
-			break
-		}
-		fmt.Println("请选择行动，f为战斗，w为闲逛,s为闲逛")
+	ch <- 1
+	x := <- ch
+	for x == 1 {
+		fmt.Println("请选择行动，f为战斗，w为闲逛,p为暂停")
 		fmt.Scanf("%s",&input)
 		switch input {
 			case "f":
@@ -47,6 +46,12 @@ func main() {
 				isAutoWalk = false;
 				isAutoFight = false;
 		}
+		fmt.Scanf("%s",&input)
+		if input == "p"{
+			isAutoWalk = false;
+			isAutoFight = false;
+		}
+		x = <- ch
 	}
 
 	fmt.Println("游戏结束")
@@ -153,12 +158,12 @@ func fight(){
 
 func autoAttake(monster role.Monster) {
 	for role.MyHero.IsAlive && monster.IsAlive{
-		if monster.IsAlive {
+		if role.MyHero.IsAlive && monster.IsAlive {
 			time.Sleep(attakeSpeed)
 			role.MyHero.Attak(&monster)
 		}
 
-		if role.MyHero.IsAlive {
+		if role.MyHero.IsAlive && monster.IsAlive {
 			time.Sleep(attakeSpeed)
 			monster.Attak(&role.MyHero)
 		}
