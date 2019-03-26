@@ -1,0 +1,23 @@
+[
+  {"Id":0,"Name": "变异老鼠", "Level": 1, "Hp": 10,"Chp":1, "Attake": 2, "Defense": 0},
+  {"Id":1,"Name": "发狂的猫", "Level": 1, "Hp": 10,"Chp":10, "Attake": 3, "Defense": 1},
+  {"Id":2,"Name": "鬣狗", "Level": 1, "Hp": 10,"Chp":10,"Attake": 4, "Defense": 1},
+  {"Id":3,"Name": "鸡王", "Level": 1, "Hp": 10,"Chp":10, "Attake": 5, "Defense": 1},
+  {"Id":4,"Name": "雪狐", "Level": 1, "Hp": 10,"Chp":10, "Attake": 5, "Defense": 1},
+  {"Id":5,"Name": "金钱豹", "Level": 1, "Hp": 20,"Chp":20, "Attake": 5, "Defense": 2},
+  {"Id":6,"Name": "东北虎", "Level": 1, "Hp": 20,"Chp":20, "Attake": 5, "Defense": 2},
+  {"Id":7,"Name": "草泥马", "Level": 1, "Hp": 20,"Chp":20, "Attake": 5, "Defense": 2},
+  {"Id":8,"Name": "双脊龙", "Level": 1, "Hp": 20,"Chp":20, "Attake": 5, "Defense": 2},
+  {"Id":9,"Name": "瘟疫之鼠", "Level": 1, "Hp": 20,"Chp":20, "Attake": 5, "Defense": 1},
+  {"Id":10,"Name": "猫耳少女", "Level": 2, "Hp": 40,"Chp":40, "Attake": 5, "Defense": 1},
+  {"Id":11,"Name": "狗头人", "Level": 2, "Hp": 40,"Chp":40, "Attake": 5, "Defense": 1},
+  {"Id":12,"Name": "九世野鸡", "Level": 2, "Hp": 40,"Chp":40, "Attake": 5, "Defense": 1},
+  {"Id":13,"Name": "狐狸精", "Level": 2, "Hp": 40,"Chp":40, "Attake": 5, "Defense": 1},
+  {"Id":14,"Name": "豹妖", "Level": 2, "Hp": 40,"Chp":40, "Attake": 5, "Defense": 1},
+  {"Id":15,"Name": "虎妞", "Level": 2, "Hp": 40,"Chp":40, "Attake": 5, "Defense": 1},
+  {"Id":16,"Name": "千里马", "Level": 2, "Hp": 40,"Chp":40, "Attake": 5, "Defense": 1},
+  {"Id":17,"Name": "三角龙", "Level": 2, "Hp": 40,"Chp":40, "Attake": 5, "Defense": 1},
+  {"Id":18,"Name": "蟑螂鼠", "Level": 2, "Hp": 40,"Chp":40, "Attake": 5, "Defense": 1},
+  {"Id":19,"Name": "九命猫妖", "Level": 2, "Hp": 40,"Chp":40, "Attake": 5, "Defense": 1},
+  {"Id":20,"Name": "犬夜叉", "Level": 3, "Hp": 40,"Chp":40, "Attake": 5, "Defense": 1}
+]
