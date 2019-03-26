@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"hong.com/base"
+	"GoGame/base"
 	"time"
-	"hong.com/role"
+	"GoGame/role"
 )
 
 var ch chan int
@@ -32,11 +32,17 @@ func main() {
 	fmt.Println("请输入姓名：")
 	fmt.Scanf("%s",&input)
 	role.NewHero(input)
-	ch <- 1
-	x := <- ch
-	for x == 1 {
-		fmt.Println("请选择行动，f为战斗，w为闲逛,p为暂停")
+
+	for true {
+
+		fmt.Println("请选择行动，f为战斗，w为闲逛,s为暂停")
 		fmt.Scanf("%s",&input)
+
+		if GameOver() {
+			fmt.Println("您的遗言是：",input)
+			role.MyHero.Property()
+			break
+		}
 		switch input {
 			case "f":
 				go AFK();
@@ -46,12 +52,6 @@ func main() {
 				isAutoWalk = false;
 				isAutoFight = false;
 		}
-		fmt.Scanf("%s",&input)
-		if input == "p"{
-			isAutoWalk = false;
-			isAutoFight = false;
-		}
-		x = <- ch
 	}
 
 	fmt.Println("游戏结束")
@@ -168,7 +168,6 @@ func autoAttake(monster role.Monster) {
 			monster.Attak(&role.MyHero)
 		}
 	}
-
 }
 func findMonster() (monster role.Monster){
 	randInt = Random(role.MyHero.Level*10)

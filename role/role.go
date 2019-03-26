@@ -10,8 +10,31 @@ func init(){
 	initMonster()
 }
 
+var MyHero Hero
+
+var monsters []Monster
+
+type Role struct {
+	Name string
+	Level int
+	Chp,Hp,Attake,Defense float64
+	IsAlive bool
+}
+
+type Monster struct {
+	Role
+	Id int
+}
+
+type Hero struct{
+	Role
+	exp int
+	money int
+	killNumber int
+}
+
 func initMonster(){
-	data,err := ioutil.ReadFile("hong.com/role/monster.json")
+	data,err := ioutil.ReadFile("GoGame/role/monster.json")
 	if err != nil{
 		fmt.Println("打开文件失败",err.Error())
 	}
@@ -21,20 +44,12 @@ func initMonster(){
 		fmt.Println("error:",err)
 	}
 }
-var monsters []Monster
-type Role struct {
-	Name string
-	Level int
-	Chp,Hp,Attake,Defense float64
-	IsAlive bool
-}
 
-var MyHero Hero
 type living interface {
 	Attak()
 }
 
-func (r Role) Attak(target *Role){
+func (r *Role) Attak(target *Role){
 	if (r.Attake - target.Defense)>1 {
 		target.Hp -= r.Attake - target.Defense
 	}else {
@@ -47,6 +62,9 @@ func(r Monster) Property(){
 	fmt.Printf("姓名：%s，等级：%d，当前生命:%g，最大生命:%g，攻击:%g，防御:%g,存活状况:%t\n",r.Name,r.Level,r.Chp,r.Hp,r.Attake,r.Defense,r.IsAlive)
 }
 
+func(r Hero) Property(){
+	fmt.Printf("姓名：%s，等级：%d，当前生命:%g，最大生命:%g，攻击:%g，防御:%g,存活状况:%t\n",r.Name,r.Level,r.Chp,r.Hp,r.Attake,r.Defense,r.IsAlive)
+}
 //func (r Monster) Attak(target *Monster){
 //	damage := 0.0
 //	if (r.Attake - target.Defense)>1 {
@@ -58,7 +76,7 @@ func(r Monster) Property(){
 //	fmt.Printf("%s攻击了%s造成了%g点伤害，%s剩余%g血\n",r.Name,target.Name,damage,target.Name,target.Hp)
 //}
 
-func (r Monster) Attak(target *Hero) (finish bool){
+func (r *Monster) Attak(target *Hero) (finish bool){
 	damage := 0.0
 	if (r.Attake - target.Defense)>1 {
 		damage = r.Attake - target.Defense
@@ -79,19 +97,7 @@ func (r Monster) Attak(target *Hero) (finish bool){
 	return false
 }
 
-type Monster struct {
-	Role
-	Id int
-}
-
-type Hero struct{
-	Role
-	exp int
-	money int
-	killNumber int
-}
-
-func (r Hero) Attak(target *Monster) (finish bool){
+func (r *Hero) Attak(target *Monster) (finish bool){
 	damage := 0.0
 	if (r.Attake - target.Defense)>1 {
 		damage = r.Attake - target.Defense
@@ -121,19 +127,21 @@ func NewHero(name string){
 	MyHero = Hero{Role{name,1,15.0,15.0,6.0,1.0,true},0,0,0}
 }
 
-func (hero Hero) upLevel(){
+func (hero *Hero) upLevel(){
 	canLevel := false
 	if hero.exp == hero.Level {
 		canLevel = true
 	}
 	if canLevel{
-		hero.exp = 0
+		hero.exp -= hero.Level
 		hero.Level++
 		hero.Hp += 15
 		hero.Chp = hero.Hp
 		hero.Attake += 1
 		hero.Defense += 1
-		fmt.Println("恭喜您升级了，当前等级为：",hero.Level)
+		fmt.Println("恭喜您升级了")
+		hero.Property()
+		hero.upLevel();
 	}
 
 }
